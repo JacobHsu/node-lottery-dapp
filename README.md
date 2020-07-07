@@ -13,6 +13,11 @@ solidity ^0.4.x solc需降版本至 versions [0.4.x](https://www.npmjs.com/packa
 
 It also accepts an optional set of callback functions, which include the import and the smtSolver callbacks. Starting `0.6.0` it only accepts an object in place of the callback to supply the callbacks.
 
+## test
+
+`npm i mocha ganache-cli web3`  
+`npm install -g mocha`
+
 ## References
 
 [ethereum-lottery-dapp](https://github.com/wangshijun/ethereum-lottery-dapp)
