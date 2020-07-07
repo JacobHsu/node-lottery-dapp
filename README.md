@@ -5,6 +5,20 @@
 players[index].transfer(address(this).balance);
 ```
 
+## install
+
+```shell
+git clone git@github.com:JacobHsu/node-lottery-dapp.git
+cd node-lottery-dapp
+npm i
+cd dapp
+yarn
+cd ../
+npm run dev
+```
+
+`npx create-react-app dapp`
+
 ## solc
 
 solidity ^0.4.x solc需降版本至 versions [0.4.x](https://www.npmjs.com/package/solc)
