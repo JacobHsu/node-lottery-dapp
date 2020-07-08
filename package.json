@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "c": "node scripts/c.js",
     "compile": "node scripts/compile.js",
     "start": "pm2 restart pm2.json",
     "test": "mocha tests/",

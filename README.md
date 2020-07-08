@@ -24,6 +24,7 @@ npm run dev
 solidity ^0.4.x solc需降版本至 versions [0.4.x](https://www.npmjs.com/package/solc)
 
 `npm i solc@0.4.26`
+`npm i solc@0.5.17` npm run c
 
 It also accepts an optional set of callback functions, which include the import and the smtSolver callbacks. Starting `0.6.0` it only accepts an object in place of the callback to supply the callbacks.
 
