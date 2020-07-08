@@ -31,6 +31,7 @@ class App extends Component {
       amount: '0',
       message: '',
       loading: false,
+      isOwner: false
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -40,14 +41,17 @@ class App extends Component {
 
   async componentDidMount() {
     const [owner, players, balance] = await Promise.all([
-      contract.methods.owner().call(),
+      contract.methods.owner().call(), //合約擁有者
       contract.methods.getPlayers().call(),
       web3.eth.getBalance(contract.options.address),
     ]);
 
-    console.log({ owner, players, balance });
-
-    this.setState({ owner, players, balance });
+    const accounts = await web3.eth.getAccounts();
+    const account = accounts[0];
+    const isOwner = owner === account ? true : false;
+    console.log({ owner, players, balance, account, isOwner });
+    
+    this.setState({ owner, players, balance, isOwner });
   }
 
   onInputChange(e) {
@@ -94,7 +98,7 @@ class App extends Component {
   }
 
   render() {
-    const { balance, players, amount, loading, message, owner } = this.state;
+    const { balance, players, amount, loading, message, owner, isOwner } = this.state;
     
     return (
       <div className="App">
@@ -103,7 +107,7 @@ class App extends Component {
         </div>
         <div className="App-body">
           <MyButton>奖金池金额 ETH {web3.utils.fromWei(balance, 'ether')}</MyButton>
-          <div class="money">合约地址：<span id="cash">{address}</span></div>
+          <div className="money">合约地址：<span id="cash">{address}</span></div>
           <p>
               共 {players.length} 人参与抽奖
           </p>
@@ -124,7 +128,7 @@ class App extends Component {
           <hr />
 
           <h3>开奖时间到?</h3>
-          <button onClick={this.onPickWinner} disabled={loading}>
+          <button onClick={this.onPickWinner} disabled={!isOwner}>
             立即开奖
           </button>
 
