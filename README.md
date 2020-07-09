@@ -1,9 +1,6 @@
 # node-lottery-dapp
 
-```js
-// 向 players[index] 轉了address(this) 的以太幣
-players[index].transfer(address(this).balance);
-```
+
 
 ## install
 
@@ -27,6 +24,15 @@ solidity ^0.4.x solc需降版本至 versions [0.4.x](https://www.npmjs.com/packa
 `npm i solc@0.5.17` npm run c
 
 It also accepts an optional set of callback functions, which include the import and the smtSolver callbacks. Starting `0.6.0` it only accepts an object in place of the callback to supply the callbacks.
+
+v0.4.26 [doc](https://www.npmjs.com/package/solc/v/0.4.26)  
+
+## contracts
+
+```js
+// 向 players[index] 轉了address(this) 的以太幣
+players[index].transfer(address(this).balance);
+```
 
 ## test
 
@@ -56,11 +62,11 @@ https://infura.io/dashboard/ethereum/36ee35c5047840b09d8c6da02899972f/overview
 
 > node scripts/deploy.js
 
-合约部署账户: 0xd9538901149f47890C334218Ae741e665B0AF396  
-合约部署耗时: 18149.254ms  
-合约部署成功: 0x0Fad4740cAd07963f2D1046e272b1EBbC14D17ad  <- `address.json` 
-合约查看地址: https://rinkeby.etherscan.io/address/0x0Fad4740cAd07963f2D1046e272b1EBbC14D17ad  
-地址写入成功: C:\rd\node-lottery-dapp\address.json  
+合约部署账户: 0xd9538901149f47890C334218Ae741e665B0AF396
+合约部署耗时: 20048.361ms
+合约部署成功: 0xf24F5C4a3506DD7f645f92A6a69Cf7dEf21811e6 <- `address.json`
+合约查看地址: https://rinkeby.etherscan.io/address/0xf24F5C4a3506DD7f645f92A6a69Cf7dEf21811e6
+地址写入成功: C:\rd\node-lottery-dapp\dapp\src\address.json
 
 ## References
 

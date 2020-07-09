@@ -31,7 +31,7 @@ const web3 = new Web3(provider);
   console.log('合约部署成功:', contractAddress);
   console.log('合约查看地址:', `https://rinkeby.etherscan.io/address/${contractAddress}`);
 
-  const addressFile = path.resolve(__dirname, '../address.json');
+  const addressFile = path.resolve(__dirname, '../dapp/src/address.json');
   fs.writeFileSync(addressFile, JSON.stringify(contractAddress));
   console.log('地址写入成功:', addressFile);
 

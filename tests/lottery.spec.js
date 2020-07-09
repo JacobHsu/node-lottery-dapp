@@ -17,6 +17,7 @@ beforeEach(async () => {
 
 describe('Lottery Contract', () => {
   it('should deploy contract', () => {
+    console.log('contract.options.address', contract.options.address)
     assert.ok(contract.options.address);
   });
 

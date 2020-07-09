@@ -1,12 +1,10 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.22;
 
-contract Lottery {
-    address public owner;
+import "./Owned.sol";
+
+contract Lottery is Owned {
+
     address[] public players;
-
-    constructor() public {
-        owner = msg.sender;
-    }
 
     function participate() public payable {
         require(msg.value >= .01 ether);
@@ -17,18 +15,13 @@ contract Lottery {
         return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players)));
     }
 
-    function pickWinner() public ownerOnly {
+    function pickWinner() public onlyOwner {
         require(players.length > 0);
 
         uint index = random() % players.length;
         players[index].transfer(address(this).balance);
 
         players = new address[](0);
-    }
-
-    modifier ownerOnly() {
-        require(msg.sender == owner);
-        _;
     }
 
     function getPlayers() public view returns(address[]) {
