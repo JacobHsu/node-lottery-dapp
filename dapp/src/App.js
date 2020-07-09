@@ -6,6 +6,8 @@ import './App.css';
 import address from './address.json';
 import { interface as ABI } from './Lottery.json';
 
+import Cylinder from "./components/Cylinder";
+
 const web3 = new Web3(window.web3.currentProvider);
 const contract = new web3.eth.Contract(JSON.parse(ABI), address);
 
@@ -108,6 +110,7 @@ class App extends Component {
         <div className="App-body">
           <MyButton>奖金池金额 ETH {web3.utils.fromWei(balance, 'ether')}</MyButton>
           <div className="money">合约地址：<span id="cash">{address}</span></div>
+          <Cylinder/>
           <p>
               共 {players.length} 人参与抽奖
           </p>
