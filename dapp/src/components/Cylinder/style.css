@@ -13,10 +13,10 @@ body {
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
-  -webkit-animation: anim_cylinder 8000ms ease 800ms infinite;
+  /* -webkit-animation: anim_cylinder 8000ms ease 800ms infinite;
   -moz-animation: anim_cylinder 8000ms ease 800ms infinite;
   -o-animation: anim_cylinder 8000ms ease 800ms infinite;
-  animation: anim_cylinder 8000ms ease 800ms infinite;
+  animation: anim_cylinder 8000ms ease 800ms infinite; */
 }
 .sculpt {
   position: absolute;

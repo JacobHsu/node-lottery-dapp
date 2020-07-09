@@ -110,7 +110,7 @@ class App extends Component {
         <div className="App-body">
           <MyButton>奖金池金额 ETH {web3.utils.fromWei(balance, 'ether')}</MyButton>
           <div className="money">合约地址：<span id="cash">{address}</span></div>
-          <Cylinder/>
+          <Cylinder num={players.length}/>
           <p>
               共 {players.length} 人参与抽奖
           </p>
