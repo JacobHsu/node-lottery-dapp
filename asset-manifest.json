@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/node-lottery-dapp/static/css/main.751fca17.chunk.css",
+    "main.js": "/node-lottery-dapp/static/js/main.82bec0c4.chunk.js",
+    "main.js.map": "/node-lottery-dapp/static/js/main.82bec0c4.chunk.js.map",
+    "runtime-main.js": "/node-lottery-dapp/static/js/runtime-main.ab815ecf.js",
+    "runtime-main.js.map": "/node-lottery-dapp/static/js/runtime-main.ab815ecf.js.map",
+    "static/js/2.81df4b54.chunk.js": "/node-lottery-dapp/static/js/2.81df4b54.chunk.js",
+    "static/js/2.81df4b54.chunk.js.map": "/node-lottery-dapp/static/js/2.81df4b54.chunk.js.map",
+    "index.html": "/node-lottery-dapp/index.html",
+    "precache-manifest.c5cad5495ae9ea8a907b09cd428af540.js": "/node-lottery-dapp/precache-manifest.c5cad5495ae9ea8a907b09cd428af540.js",
+    "service-worker.js": "/node-lottery-dapp/service-worker.js",
+    "static/css/main.751fca17.chunk.css.map": "/node-lottery-dapp/static/css/main.751fca17.chunk.css.map",
+    "static/js/2.81df4b54.chunk.js.LICENSE.txt": "/node-lottery-dapp/static/js/2.81df4b54.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ab815ecf.js",
+    "static/js/2.81df4b54.chunk.js",
+    "static/css/main.751fca17.chunk.css",
+    "static/js/main.82bec0c4.chunk.js"
+  ]
+}
