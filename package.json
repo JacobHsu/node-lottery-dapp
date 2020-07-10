@@ -7,6 +7,7 @@
     "c": "node scripts/c5.js",
     "compile": "node scripts/compile.js",
     "start": "pm2 restart pm2.json",
+    "t": "mocha tests/t.js",
     "test": "mocha tests/",
     "predeploy": "npm run test",
     "deploy": "node scripts/deploy.js"

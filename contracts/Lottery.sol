@@ -5,6 +5,7 @@ import "./Owned.sol";
 contract Lottery is Owned {
 
     address[] public players;
+    mapping(uint => uint) commonRandom;
 
     function participate() public payable {
         require(msg.value >= .01 ether);
