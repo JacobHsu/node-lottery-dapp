@@ -2,6 +2,21 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [Cylinder loader](https://codepen.io/thibaudbe/pen/iAwIs)
 
+## Deploy
+
+`$ yarn add gh-pages -D`
+
+package.json
+
+```js
+  "homepage": "https://jacobhsu.github.io/node-lottery-dapp",
+  "scripts": {
+    ...
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
+  },
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
