@@ -2,11 +2,20 @@ pragma solidity ^0.4.22;
 
 import "./Owned.sol";
 import "./Random.sol";
+import "./Layerprofit.sol";
 
-contract Lucky1 is Owned, Random {
+contract Lucky1 is Owned, Random, layerprofit {
 
     address[] public players;
     uint public pooln_lucky1 = 0;
+    
+    uint public winner_id;
+    uint public loser;
+    uint public common1;
+    uint public common2;
+    uint public common3;
+    uint public common4;
+    uint public initialBalance;
 
     struct resultInfo_L1{
         uint winner;
@@ -18,21 +27,17 @@ contract Lucky1 is Owned, Random {
         address[] players;
     }
     mapping(uint => resultInfo_L1) public resultMap_L1;
-    function participate_lucky1() public payable returns (uint, uint, uint, uint, uint, uint, address[]){
-        (resultMap_L1[pooln_lucky1].winner,
-        resultMap_L1[pooln_lucky1].loser,
-        resultMap_L1[pooln_lucky1].common1,
-        resultMap_L1[pooln_lucky1].common2,
-        resultMap_L1[pooln_lucky1].common3,
-        resultMap_L1[pooln_lucky1].common4) = randomNewLucky();
+    function participate_lucky1() public payable returns (uint, uint, uint, uint, uint, uint, address[], address, uint){
+        (winner_id, loser, common1, common2, common3, common4) = randomNewLucky();
 
-        return (resultMap_L1[pooln_lucky1].winner,
-        resultMap_L1[pooln_lucky1].loser,
-        resultMap_L1[pooln_lucky1].common1,
-        resultMap_L1[pooln_lucky1].common2,
-        resultMap_L1[pooln_lucky1].common3,
-        resultMap_L1[pooln_lucky1].common4,
-        players);
+
+        initialBalance = players[winner_id].balance;
+        allocateProfit(address(this).balance, players[winner_id]);
+        uint profit = players[winner_id].balance - initialBalance;
+
+        return (winner_id, loser, common1, common2, common3, common4,
+        players,
+        players[winner_id], profit );
     }
 
     function participate() public payable {
