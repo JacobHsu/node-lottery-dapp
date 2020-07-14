@@ -76,3 +76,9 @@ https://infura.io/dashboard/ethereum/36ee35c5047840b09d8c6da02899972f/overview
 [Compiling and deploying Ethereum Smart Contracts with pure JavaScript](https://medium.com/coinmonks/compiling-and-deploying-ethereum-smart-contracts-with-pure-javascript-4bee3bfe99bb)  
 [@material-ui/styles](https://material-ui.com/zh/styles/basics/#material-ui-styles)  
 [DApp教程：用Truffle 开发一个链上记事本](https://learnblockchain.cn/2019/03/30/dapp_noteOnChain) Infura 节点服务注册
+
+bordalix / [ethereum-roulette](https://github.com/bordalix/ethereum-roulette)
+
+[dapp.com](https://www.dapp.com/)
+[智慧合約除錯指南](https://www.itread01.com/content/1547699780.html)
+[Mappings + Arrays in Solidity Explained](https://medium.com/upstate-interactive/mappings-arrays-87afc697e64f)
