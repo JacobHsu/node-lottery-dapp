@@ -5,6 +5,11 @@ import "./Random.sol";
 import "./Layerprofit.sol";
 
 contract Lucky1 is Owned, Random, layerprofit {
+
+    uint8[] payouts;
+    uint8[] winnings_L1;
+    uint256[6] randomLucky;
+
     struct Bet {
         address player;
         uint8 betType;
@@ -14,17 +19,20 @@ contract Lucky1 is Owned, Random, layerprofit {
 
     uint256 nextRoundTimestamp;
 
-    address[] public players;
+    address[] public players1;
+
     // mapping (address => uint256) winnings;
     uint256 public pooln_lucky1 = 0;
 
     uint256 public winner_id;
-    uint256 public loser;
+    uint256 public loser_id;
     uint256 public common1;
     uint256 public common2;
     uint256 public common3;
     uint256 public common4;
     uint256 public initialBalance;
+    uint256 public loser_initialBalance;
+    uint256 public profit_winner;
 
     struct resultInfo_L1 {
         uint256 winner;
@@ -33,93 +41,128 @@ contract Lucky1 is Owned, Random, layerprofit {
         uint256 common2;
         uint256 common3;
         uint256 common4;
-        address[] players;
     }
     mapping(uint256 => resultInfo_L1) public resultMap_L1;
 
     constructor() public payable {
+        payouts = [ 1, 5, 10, 50 ]; // 0.1, 0.5, 1, 5
+        winnings_L1 = [12, 11, 11, 11, 11, 0 ];
         nextRoundTimestamp = now;
     }
 
-    function participate_lucky1()
+    function bet_lucky1()
         public
         payable
         returns (
-            uint256,
-            uint256,
-            uint256,
+            uint256[6],
+            uint8[],
             uint256,
             uint256,
             uint256,
             address[],
-            address,
             uint256,
-            uint256,
-            uint256,
-            address
+            uint256
         )
     {
-        (
-            winner_id,
-            loser,
-            common1,
-            common2,
-            common3,
-            common4
-        ) = randomNewLucky();
+        // (
+        //     winner_id,
+        //     loser,
+        //     common1,
+        //     common2,
+        //     common3,
+        //     common4
+        // ) = randomNewLucky();
+        randomLucky = randomArrLucky();
 
-        initialBalance = players[winner_id].balance;
+
+
+        uint type1 = bets[winner_addr].betType;
+
+        winner_id = randomLucky[0];
+
         uint256 address_balance = address(this).balance;
-        allocateProfit(address(this).balance, players[winner_id]);
-        uint256 profit = players[winner_id].balance - initialBalance;
-        address addr = players[winner_id];
-        //winnings[players[winner_id]] = profit;
+        initialBalance = players1[winner_id].balance;
 
+        address winner_addr = players1[winner_id];
+        allocateProfit(winnings_L1[0], winner_addr, 1);
+
+        // loser_id = randomLucky[5];
+        // address loser_addr = players1[loser_id];
+        // allocateProfit(winnings_L1[5], loser_addr, 1);
+
+        // address common1_addr = players1[randomLucky[1]];
+        // allocateProfit(winnings_L1[1], common1_addr, type1);
+
+        // address common2_addr = players1[randomLucky[2]];
+        // allocateProfit(winnings_L1[2], common2_addr, type1);
+
+        // loser_initialBalance = players1[loser_id].balance;
+
+        // uint arrayLength = randomLucky.length;
+        // for ( uint i=0; i<arrayLength; i++ ){
+
+        //     address addr1 = players1[i];
+        //     //test.push(addr1);
+        //     // uint balance1 = winnings_L1[i];
+        //     // allocateProfit(balance1, addr1, type1);
+        // }
+
+        // allocateProfit(address(this).balance, winner_addr, type1);
+        profit_winner = players1[winner_id].balance - initialBalance;
+        // uint256 profit_loser = players1[loser_id].balance - loser_initialBalance;
+
+        //common3 = winnings_L1[0];
+        //common4 = winnings_L1[5];
+
+        //winnings[players[winner_id]] = profit;
+            // profit,
+            // address_balance,
+            // bets[addr].betType,
+            // bets[addr].player
         return (
-            winner_id,
-            loser,
-            common1,
-            common2,
-            common3,
-            common4,
-            players,
-            players[winner_id],
-            profit,
+            randomLucky,
+            winnings_L1,
             address_balance,
-            bets[addr].number,
-            bets[addr].player
+            winner_id,
+            profit_winner,
+            players1,
+            type1,
+            initialBalance
         );
     }
 
 
     function participate(uint8 number) public payable {
         require(msg.value >= .01 ether);
-        players.push(msg.sender);
 
-        bets[msg.sender].player = msg.sender;
+        players1.push(msg.sender);
+
         bets[msg.sender].betType = 1;
+        bets[msg.sender].player = msg.sender;
         bets[msg.sender].number = number;
+
     }
 
-    function random() private view returns (uint256) {
-        return
-            uint256(
-                keccak256(
-                    abi.encodePacked(block.difficulty, block.timestamp, players)
-                )
-            );
-    }
+    // function random() private view returns (uint256) {
+    //     return
+    //         uint256(
+    //             keccak256(
+    //                 abi.encodePacked(block.difficulty, block.timestamp, players1)
+    //             )
+    //         );
+    // }
 
-    function pickWinner() public onlyOwner {
-        require(players.length > 0);
+    // function pickWinner() public onlyOwner {
+    //     require(players.length > 0);
 
-        uint256 index = random() % players.length;
-        players[index].transfer(address(this).balance);
+    //     uint256 index = random() % players.length;
+    //     players[index].transfer(address(this).balance);
 
-        players = new address[](0);
-    }
+    //     players = new address[](0);
+    // }
 
     function getPlayers() public view returns (address[]) {
-        return players;
+        return players1;
     }
+
 }

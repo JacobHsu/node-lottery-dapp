@@ -12,7 +12,7 @@ beforeEach(async () => {
   accounts = await web3.eth.getAccounts();
   contract = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({ data: bytecode })
-    .send({ from: accounts[0], gas: '1000000' });
+    .send({ from: accounts[0], gas: '2000000' });
 });
 
 describe('Lottery Contract', () => {
@@ -31,12 +31,12 @@ describe('Lottery Contract', () => {
   it('randomNewLucky', async () => {
     await contract.methods.participate(1).send({
       from: accounts[0],
-      value: web3.utils.toWei('0.3', 'ether'),
+      value: web3.utils.toWei('0.1', 'ether'),
     });
 
     await contract.methods.participate(2).send({
       from: accounts[1],
-      value: web3.utils.toWei('0.2', 'ether'),
+      value: web3.utils.toWei('0.1', 'ether'),
     });
 
     await contract.methods.participate(3).send({
@@ -46,16 +46,26 @@ describe('Lottery Contract', () => {
 
     await contract.methods.participate(4).send({
       from: accounts[3],
-      value: web3.utils.toWei('0.01', 'ether'),
+      value: web3.utils.toWei('0.1', 'ether'),
+    });
+
+    await contract.methods.participate(5).send({
+      from: accounts[4],
+      value: web3.utils.toWei('0.1', 'ether'),
+    });
+
+    await contract.methods.participate(6).send({
+      from: accounts[5],
+      value: web3.utils.toWei('0.1', 'ether'),
     });
 
     const initialBalance = await web3.eth.getBalance(accounts[0]);
-    const res = await contract.methods.participate_lucky1().call({
+    const res = await contract.methods.bet_lucky1().call({
       from: accounts[0],
     });
-    const finalBalance = await web3.eth.getBalance(accounts[0]);
-    const difference = finalBalance - initialBalance;
-    console.log(0, accounts[0], { difference, initialBalance, finalBalance });
+    // const finalBalance = await web3.eth.getBalance(accounts[0]);
+    // const difference = finalBalance - initialBalance;
+    // console.log(0, accounts[0], { difference, initialBalance, finalBalance });
 
     console.log(res);
 
