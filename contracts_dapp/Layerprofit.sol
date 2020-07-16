@@ -12,7 +12,7 @@ contract layerprofit {
 
         // if (amount > 0) player.transfer(amount);
 
-        if ( type1 == 1 && balance == 12) player.transfer(0.1 ether);
+        if ( type1 == 1 && balance == 12) player.transfer(0.12 ether);
         if ( type1 == 1 && balance == 11) player.transfer(0.11 ether);
 
     }

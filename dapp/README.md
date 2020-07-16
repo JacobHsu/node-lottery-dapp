@@ -2,6 +2,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [Cylinder loader](https://codepen.io/thibaudbe/pen/iAwIs)
 
+## [How to Connect Web3.js to MetaMask in 2020](https://medium.com/@awantoch/how-to-connect-web3-js-to-metamask-in-2020-fee2b2edf58a)
+
+```js
+  ethEnabled = () => {
+    if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+      window.ethereum.enable();
+      return true;
+    }
+    return false;
+  }
+  async componentDidMount() {
+    this.ethEnabled()
+  }
+```
+
 ## Deploy
 
 `$ yarn add gh-pages -D`

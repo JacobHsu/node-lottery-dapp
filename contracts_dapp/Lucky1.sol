@@ -32,7 +32,10 @@ contract Lucky1 is Owned, Random, layerprofit {
     uint256 public common4;
     uint256 public initialBalance;
     uint256 public loser_initialBalance;
+
     uint256 public profit_winner;
+    uint256 public profit_loser;
+    uint256 public profit_common1;
 
     struct resultInfo_L1 {
         uint256 winner;
@@ -76,27 +79,33 @@ contract Lucky1 is Owned, Random, layerprofit {
 
 
 
-        uint type1 = bets[winner_addr].betType;
+        // uint type1 = bets[winner_addr].betType;
 
         winner_id = randomLucky[0];
+        loser_id = randomLucky[5];
+        common1 = randomLucky[1];
+        common2 = randomLucky[2];
+        common3 = randomLucky[3];
+        common4 = randomLucky[4];
 
         uint256 address_balance = address(this).balance;
         initialBalance = players1[winner_id].balance;
+        loser_initialBalance = players1[loser_id].balance;
+        uint256 common1_initialBalance = players1[loser_id].balance;
 
         address winner_addr = players1[winner_id];
         allocateProfit(winnings_L1[0], winner_addr, 1);
 
-        // loser_id = randomLucky[5];
-        // address loser_addr = players1[loser_id];
-        // allocateProfit(winnings_L1[5], loser_addr, 1);
+        address loser_addr = players1[loser_id];
+        allocateProfit(winnings_L1[5], loser_addr, 1);
 
-        // address common1_addr = players1[randomLucky[1]];
-        // allocateProfit(winnings_L1[1], common1_addr, type1);
+        allocateProfit(winnings_L1[1], players1[common1], 1);
+        allocateProfit(winnings_L1[2], players1[common2], 1);
+        allocateProfit(winnings_L1[3], players1[common3], 1);
+        allocateProfit(winnings_L1[4], players1[common4], 1);
 
         // address common2_addr = players1[randomLucky[2]];
         // allocateProfit(winnings_L1[2], common2_addr, type1);
-
-        // loser_initialBalance = players1[loser_id].balance;
 
         // uint arrayLength = randomLucky.length;
         // for ( uint i=0; i<arrayLength; i++ ){
@@ -109,10 +118,8 @@ contract Lucky1 is Owned, Random, layerprofit {
 
         // allocateProfit(address(this).balance, winner_addr, type1);
         profit_winner = players1[winner_id].balance - initialBalance;
-        // uint256 profit_loser = players1[loser_id].balance - loser_initialBalance;
-
-        //common3 = winnings_L1[0];
-        //common4 = winnings_L1[5];
+        profit_loser = players1[loser_id].balance - loser_initialBalance;
+        profit_common1 = players1[common1].balance - common1_initialBalance;
 
         //winnings[players[winner_id]] = profit;
             // profit,
@@ -126,8 +133,8 @@ contract Lucky1 is Owned, Random, layerprofit {
             winner_id,
             profit_winner,
             players1,
-            type1,
-            initialBalance
+            profit_loser,
+            profit_common1
         );
     }
 

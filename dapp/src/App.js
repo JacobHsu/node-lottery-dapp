@@ -41,7 +41,19 @@ class App extends Component {
     this.onPickWinner = this.pickWinner.bind(this);
   }
 
+  ethEnabled = () => {
+    if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+      window.ethereum.enable();
+      return true;
+    }
+    return false;
+  }
+
   async componentDidMount() {
+
+    this.ethEnabled()
+
     const [owner, players, balance] = await Promise.all([
       contract.methods.owner().call(), //合約擁有者
       contract.methods.getPlayers().call(),
